@@ -195,8 +195,8 @@ async def specinfo(ctx, class_type = ''):
         elif class_type.lower() in (types.lower() for types in class_list): # If a class has been specified return specs of that clas
             x = Counter(roster_df[roster_df.Class == class_type.capitalize()]['Spec'].dropna())
             await ctx.send(get_info(x))
-        elif class_type == 'Paladin' or class_type == 'paladin': # Ensure no alliance scum
-            await ctx.send("We don't take kindly to alliance scum around here.")
+        elif class_type == 'Paladin' or class_type == 'paladin': # Ensure no alliance
+            await ctx.send("We don't take kindly to alliance around here.")
         else:
             await ctx.send('Class argument not understood.') # If the class argument is not a valid class - return this message
     else:
@@ -524,7 +524,7 @@ async def on_ready():
 async def news_update():
     await client.wait_until_ready()
     while True:
-        channel = client.get_channel(channel_num)
+        channel = client.get_channel('channel_num')
         feed = feedparser.parse('https://classic.wowhead.com/news&rss')
 
         if 'last_news' in locals():
